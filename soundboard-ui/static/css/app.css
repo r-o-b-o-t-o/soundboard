@@ -1,0 +1,42 @@
+html {
+	/* Hide vertical scrollbar */
+	overflow-y: auto;
+}
+
+:not(input):not(textarea), :not(input):not(textarea)::after, :not(input):not(textarea)::before {
+	/* Prevent user from selecting text */
+	-webkit-user-select: none;
+	user-select: none;
+	cursor: default;
+}
+
+a:focus, button:focus, input:focus, textarea:focus, .switch:focus+label::before, .switch:focus+label::after {
+	/* Remove ugly outline on elements */
+	outline: none !important;
+}
+
+.switch+label::before, .switch+label::after, label[for] {
+	cursor: pointer;
+}
+
+.button i.fa, .button i.fas, .button i.far, .button i.fal, .button i.fad, .button i.fab, .button i.fa:before, .button i.fas:before, .button i.far:before, .button i.fal:before, .button i.fad:before, .button i.fab:before, button::before, button::after {
+	cursor: pointer !important;
+}
+
+*::-webkit-scrollbar {
+	height: 8px;
+	width: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+	border-radius: 16px;
+}
+
+.modal-card-head {
+	border-bottom: 0px;
+}
+
+.modal-card-foot {
+	border-top: 0px;
+	justify-content: flex-end;
+}

@@ -1,0 +1,12 @@
+{
+	"restartable": "rs",
+	"exec": "npm start",
+	"ignore": [
+		"dist/**/*",
+		"tmp/**/*"
+	],
+	"watch": [
+		"**/*"
+	],
+	"ext": "ts,html,css,json"
+}

@@ -1,0 +1,34 @@
+#sounds .sound {
+	height: 100px;
+	border: solid 1px transparent;
+	transition: border 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+	overflow: hidden;
+	position: relative;
+	cursor: pointer;
+}
+
+#sounds .sound::after {
+	content: "";
+	background: var(--background);
+	background-size: cover;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	left: 0px;
+	opacity: 0.2;
+	cursor: pointer;
+}
+
+#sounds .sound.selected {
+	border: solid 1px rgba(52, 152, 219, 0.5);
+	box-shadow: 0 0 8px #3498db;
+}
+
+#sounds .sound * {
+	cursor: pointer;
+}
+
+#all-sounds {
+	display: none;
+}

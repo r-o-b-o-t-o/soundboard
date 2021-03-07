@@ -1,0 +1,12 @@
+#sound-template {
+	display: none;
+}
+
+.sound-image-preview {
+	max-height: 128px;
+}
+
+#version {
+	color: #636363;
+	float: right;
+}

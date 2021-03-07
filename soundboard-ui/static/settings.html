@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>Soundboard Settings</title>
+
+	<link id="theme-css" rel="stylesheet" href="css/theme-dark.min.css">
+	<link rel="stylesheet" href="css/lato.min.css">
+	<link rel="stylesheet" href="css/fontawesome.min.css">
+	<link rel="stylesheet" href="css/bulma-switch.min.css">
+	<link rel="stylesheet" href="css/modal-fx.min.css">
+	<link rel="stylesheet" href="css/app.css">
+	<link rel="stylesheet" href="css/settings.css">
+</head>
+
+<body>
+	<section class="section">
+		<div class="container">
+			<span id="version"></span>
+
+			<h1 class="title is-size-1">
+				Settings
+			</h1>
+
+			<h3 class="is-size-3">System settings</h3>
+			<div class="field">
+				<input id="input-autostart" type="checkbox" class="switch is-rounded is-info">
+				<label for="input-autostart">Start automatically when Windows starts</label>
+			</div>
+
+			<br><br>
+
+			<h3 class="is-size-3">Output devices</h3>
+			<span>Sound effects will be played on the selected playback devices:</span>
+			<br>
+			<br>
+			<div id="output-devices"></div>
+
+			<br><br>
+
+			<h3 class="is-size-3">Sounds</h3>
+			<div id="sound-template" class="box sound">
+				<div class="content">
+					<div class="field">
+						<label class="label">Name</label>
+						<div class="control">
+							<input class="input sound-input-name" type="text" placeholder="Name">
+						</div>
+					</div>
+
+					<label class="label">Sound file</label>
+					<div class="field has-addons">
+						<div class="control is-expanded">
+							<input class="input sound-input-path" type="text" placeholder="Sound file path">
+						</div>
+						<div class="control">
+							<a class="button button-browse-sound"><i class="fas fa-folder"></i></a>
+						</div>
+					</div>
+
+					<div class="field">
+						<label class="label"><input type="checkbox" class="sound-checkbox-image"> Image</label>
+						<div class="control">
+							<label class="radio">
+								<input class="sound-input-image-type-file" type="radio">
+								Local file
+							</label>
+							<label class="radio">
+								<input class="sound-input-image-type-url" type="radio">
+								Web URL
+							</label>
+						</div>
+					</div>
+					<div class="sound-image-file field has-addons">
+						<div class="control is-expanded">
+							<input class="input sound-input-image-file" type="text" placeholder="Image path">
+						</div>
+						<div class="control">
+							<a class="button"><i class="fas fa-folder"></i></a>
+						</div>
+					</div>
+					<div class="sound-image-url field">
+						<div class="control is-expanded">
+							<input class="input sound-input-image-url" type="text" placeholder="Image URL">
+						</div>
+					</div>
+					<img class="sound-image-preview">
+
+					<br>
+					<br>
+					<div class="button sound-btn-delete is-danger"><i class="fas fa-trash"></i>&ensp;Delete</div>
+				</div>
+			</div>
+
+			<span>When adding a sound file:</span>
+			<div class="field">
+				<label for="input-copy-sound">Don't copy the file, only use its path</label>&nbsp;
+				<input id="input-copy-sound" type="checkbox" class="switch is-rounded is-info">
+				<label for="input-copy-sound">Copy the file to the sounds directory</label>
+			</div>
+			<br>
+
+			<div class="button is-success btn-add-sound"><i class="fas fa-plus"></i>&ensp;Add</div>
+			<br>
+			<br>
+
+			<input type="text" id="settings-input-filter-sounds" class="input" placeholder="Filter sounds">
+			<br>
+			<br>
+
+			<div id="sounds"></div>
+			<br>
+			<div class="button is-success btn-add-sound"><i class="fas fa-plus"></i>&ensp;Add</div>
+		</div>
+	</section>
+
+	<div id="modal-delete-sound" class="modal modal-fx-fadeInScale">
+		<div class="modal-background"></div>
+		<div class="modal-content">
+			<div class="modal-card">
+				<header class="modal-card-head">
+					<p class="modal-card-title"><i class="fa fa-trash"></i>&ensp;Delete Sound</p>
+					<button class="modal-button-close is-large delete" aria-label="close"></button>
+				</header>
+				<div class="modal-card-body">
+					Do you really want to delete <span class="sound-name has-text-weight-bold"></span>?
+				</div>
+
+				<footer class="modal-card-foot">
+					<button class="button is-danger button-confirm"><i class="fa fa-trash"></i>&ensp;Delete</button>
+					<button class="button modal-button-close"><i class="fa fa-times"></i>&ensp;Cancel</button>
+				</footer>
+			</div>
+		</div>
+
+		<button class="modal-close is-large" aria-label="close"></button>
+	</div>
+
+	<div id="modal-update-available" class="modal modal-fx-fadeInScale">
+		<div class="modal-background"></div>
+		<div class="modal-content">
+			<div class="modal-card">
+				<header class="modal-card-head">
+					<p class="modal-card-title"><i class="fa fa-level-up-alt"></i>&ensp;Update Available</p>
+					<button class="modal-button-close is-large delete" aria-label="close"></button>
+				</header>
+				<div class="modal-card-body">
+					An update is available, would you like to install it?<br>
+					<i>Note: the program will automatically restart if you choose to update.</i>
+				</div>
+
+				<footer class="modal-card-foot">
+					<button class="button is-primary button-update"><i class="fa fa-level-up-alt"></i>&ensp;Update</button>
+					<button class="button modal-button-close button-never-ask"><i class="fa fa-ban"></i>&ensp;Never ask me again</button>
+					<button class="button modal-button-close"><i class="fa fa-times"></i>&ensp;Not now</button>
+				</footer>
+			</div>
+		</div>
+
+		<button class="modal-close is-large" aria-label="close"></button>
+	</div>
+
+	<div id="modal-changelog" class="modal modal-fx-fadeInScale">
+		<div class="modal-background"></div>
+		<div class="modal-content">
+			<div class="modal-card">
+				<header class="modal-card-head">
+					<p class="modal-card-title"><i class="fa fa-clipboard-list"></i>&ensp;Changelog</p>
+					<button class="modal-button-close is-large delete" aria-label="close"></button>
+				</header>
+				<div class="modal-card-body"></div>
+
+				<footer class="modal-card-foot">
+					<button class="button modal-button-close"><i class="fa fa-times"></i>&ensp;Close</button>
+				</footer>
+			</div>
+		</div>
+
+		<button class="modal-close is-large" aria-label="close"></button>
+	</div>
+
+	<script src="js/jquery-3.5.1.slim.min.js"></script>
+	<script src="js/modal-fx.min.js"></script>
+	<script type="module" src="js/settings.js"></script>
+</body>
+
+</html>

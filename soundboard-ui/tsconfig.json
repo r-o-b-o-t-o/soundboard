@@ -1,0 +1,9 @@
+{
+	"compilerOptions": {
+		"target": "es2015",
+		"module": "es2015",
+		"baseUrl": "src/",
+		"outDir": "dist/js/",
+		"sourceMap": true
+	}
+}
